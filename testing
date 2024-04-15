@@ -1,0 +1,20 @@
+import os
+
+def run_command(command):
+    """Run a command and return the output."""
+    return os.popen(command).read()
+
+def interactive_mode():
+    """Start an interactive shell."""
+    print("Welcome to the Interactive Shell!")
+    while True:
+        command = input("$ ")
+        if command.lower() == 'exit':
+            print("Exiting Interactive Shell...")
+            break
+        output = run_command(command)
+        print(output)
+
+if __name__ == "__main__":
+    interactive_mode()
+
