@@ -1,51 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
+#include "shell.h"
 
-#define MAX_COMMAND_LENGTH 100
+#define PROMPT "#cisfun$ "
+#define BUFFER_SIZE 1024
+/**
+ *main - main function
+ *
+ *
+ *
+ *Return: always 0
+ */
+int main(void)
+{
+char buffer[BUFFER_SIZE];
+char *args[2];
+ssize_t bytes_read;
 
-int run_command(char *command) {
-	if (system(command) == -1) {
-	printf("Error: Command '%s' not found\n", command);
-	return -1;
-    }
-	return 0;
+while (1)
+{
+write(STDOUT_FILENO, PROMPT, sizeof(PROMPT) - 1);
+
+bytes_read = read(STDIN_FILENO, buffer, BUFFER_SIZE);
+if (bytes_read == 0)
+{
+write(STDOUT_FILENO, "\n", 1);
+break;
 }
-
-void replace_spaces_with_tabs(char *str) {
-	int i;
-	for (i = 0; str[i] != '\0'; ++i) {
-		if (str[i] == ' ') {
-			str[i] = '\t';
-        }
-    }
+else if (bytes_read == -1)
+{
+perror("read");
+exit(EXIT_FAILURE);
 }
+buffer[bytes_read - 1] = '\0';
 
-int main() {
-	char command[MAX_COMMAND_LENGTH];
-	printf("Who Let You In My Shell?!\n");
-    
-	while (1) {
-	printf("(ง'̀-'́)ง ");
-	if (fgets);
-	if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL) {
-		printf("\nGet Out My Shell!!\n");
-		break;
-	}
-	command[strcspn(command, "\n")] = '\0';
+args[0] = buffer;
+args[1] = NULL;
 
-	if (strlen(command) == 0) {
-		continue;
-	}
-
-	replace_spaces_with_tabs(command);
-
-	if (run_command(command) == -1) {
-	continue;
-	}
-	}
-
-	return 0;
+if (execve(args[0], args, NULL) == -1)
+{
+perror(buffer);
 }
-
+}
+return (0);
+}
