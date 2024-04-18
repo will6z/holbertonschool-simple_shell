@@ -7,9 +7,10 @@ Simple Shell is a basic UNIX command line interpreter written in C. It provides 
 - Error handling: Provides informative error messages for command execution failures and file errors.
 - Supports simple commands: Executes one-word commands without arguments.
 
+![676f4e96500f1771e297c7e9fcbf468f](https://github.com/will6z/holbertonschool-simple_shell/assets/155671125/fa5d8826-bb6d-439f-afa0-174185c449f1)
+
 ## Usage
 ### Interactive Mode
 To run the shell in interactive mode, simply execute the compiled binary:
 ```bash
 ./hsh
-
