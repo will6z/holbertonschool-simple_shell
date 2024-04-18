@@ -1,4 +1,4 @@
-#include "shell.c"
+#include "shell.h"
 
 /**
  *print_message - prints a message to the standard output
