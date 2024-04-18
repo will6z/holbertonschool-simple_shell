@@ -13,3 +13,5 @@ To run the shell in interactive mode, simply execute the compiled binary:
 ```bash
 ./hsh
 
+![Uploading 676f4e96500f1771e297c7e9fcbf468f.gif…]()
+
