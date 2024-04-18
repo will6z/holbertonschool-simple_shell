@@ -1,0 +1,43 @@
+.TH SIMPLE_SHELL 1 "April 18,2024" "1.0" "simple_shell manual"
+
+.SH NAME
+simple_shell \- Simple Shell
+
+.SH SYNOPSIS
+.B simple_shell
+
+.SH DESCRIPTION
+The Simple Shell (simple_shell) is a basic UNIX command line interpreter written in C. It provides a minimalist shell environment where users can execute commands interactively or from a file.
+
+.SH OPTIONS
+The command-line options for simple_shell are the same as the orignal terminal e.g. pwd, ls, vi, touch, cat, etc.
+
+.SH INTERACTIVE MODE
+Run simple_shell without any arguments to enter interactive mode. In this mode, users can enter commands interactively.
+
+.SH NON-INTERACTIVE MODE
+To execute commands from a file, provide the file as an argument to simple_shell:
+.B simple_shell file_with_commands.txt
+
+.SH EXIT STATUS
+simple_shell returns the following exit status codes:
+.TP
+\(bu 0: Successful execution.
+.TP
+\(bu 1: Error occurred.
+
+.SH AUTHOR
+William Pellot <9041@holbertonstudents.com>
+Abimael Perez <9044@holbertonstudents.com>
+
+.SH SEE ALSO
+.BR bash (1),
+.BR sh (1),
+.BR tcsh (1)
+
+.SH BUGS
+Report any bugs to <9041@holbertonstudents.com>.
+
+.SH COPYRIGHT
+Copyright (C) 2024 William Pellot & Abimael Perez. This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
