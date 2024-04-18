@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "shell.h"
+#include <string.h>
 
 #define PROMPT "#cisfun$ "
 #define BUFFER_SIZE 1024
@@ -15,7 +16,7 @@
 int main(void)
 {
 char buffer[BUFFER_SIZE];
-char *args[2];
+char *args[BUFFER_SIZE / 2 + 1];
 ssize_t bytes_read;
 
 while (1)
@@ -35,12 +36,21 @@ exit(EXIT_FAILURE);
 }
 buffer[bytes_read - 1] = '\0';
 
+char *token;
+int i = 0;
+token = strtok(buffer, " ");
+while (token != NULL)
+{
+args[i++] = token;
+token = strtok(NULL, " ");
+}
 args[0] = buffer;
 args[1] = NULL;
+args[i] = NULL;
 
 if (execve(args[0], args, NULL) == -1)
 {
-perror(buffer);
+perror(args[0]);
 }
 }
 return (0);
