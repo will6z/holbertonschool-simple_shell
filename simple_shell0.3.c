@@ -7,9 +7,10 @@
 #define MAX_CMD_LEN 100
 #define MAX_ARGS 10
 {
-	char *getpath();
-	void tokenize_command(char *cmd, char **args);
-	void execute_command(char **args, char **dirs);
+char *getpath();
+void tokenize_command(char *cmd, char **args);
+void execute_command(char **args, char **dirs);
+void tokenize_path(char *path);
 
 int main(void)
 {
@@ -58,7 +59,7 @@ int main(void)
 	token = strtok(NULL, " ");
 	}
 }
-	void execute_command(char **args, char **dirs)
+	void execute_command(char **args)
 {
 	if (access(args[0], X_OK) == -1)
 	{
