@@ -18,6 +18,8 @@ int main(void)
 char buffer[BUFFER_SIZE];
 char *args[BUFFER_SIZE / 2 + 1];
 ssize_t bytes_read;
+char *token;
+int i = 0;
 
 while (1)
 {
@@ -36,8 +38,6 @@ exit(EXIT_FAILURE);
 }
 buffer[bytes_read - 1] = '\0';
 
-char *token;
-int i = 0;
 token = strtok(buffer, " ");
 while (token != NULL)
 {
