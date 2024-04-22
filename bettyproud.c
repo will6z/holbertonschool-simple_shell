@@ -18,18 +18,3 @@ message++;
 _putchar('\n');
 }
 }
-
-/**
- *main - entry point of program
- *
- *Return: always 0
- *
-*/
-int main(void)
-{
-char *message = "Hello, Betty!";
-
-print_message(message);
-
-return (0);
-}
