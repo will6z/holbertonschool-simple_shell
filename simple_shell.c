@@ -5,7 +5,6 @@
 #include <string.h>
 #include <sys/wait.h>
 
-#define PROMPT "#cisfun$ "
 #define BUFFER_SIZE 1024
 /**
  *main - main function
@@ -19,18 +18,16 @@ int main(void)
 char buffer[BUFFER_SIZE];
 char *args[BUFFER_SIZE / 2 + 1];
 ssize_t bytes_read;
-char *token;
-int i = 0;
 pid_t pid;
 
 while (1)
 {
-printf("%s", PROMPT);
+printf("#cisfun$ ");
 
 bytes_read = read(STDIN_FILENO, buffer, BUFFER_SIZE);
 if (bytes_read == 0)
 {
-_putchar('\n');
+printf("\n");
 break;
 }
 else if (bytes_read == -1)
@@ -40,14 +37,11 @@ exit(EXIT_FAILURE);
 }
 buffer[bytes_read - 1] = '\0';
 
-token = strtok(buffer, " ");
-i = 0;
-while (token != NULL)
-{
-args[i++] = token;
-token = strtok(NULL, " ");
-}
-args[i] = NULL;
+if (strcmp(buffer, "exit") == 0)
+break;
+
+args[0] = buffer;
+args[1] = NULL;
 
 pid = fork();
 if (pid == -1)
@@ -55,23 +49,18 @@ if (pid == -1)
 perror("fork");
 exit(EXIT_FAILURE);
 }
-	else if (pid == 0)
+else if (pid == 0)
 {
-if (execvp(args[0], args) == -1)
+if (execve(args[0], args, NULL) == -1)
 {
-perror(args[0]);
+perror("execve");
 exit(EXIT_FAILURE);
 }
 }
-	else
+else
 {
 wait(NULL);
 }
 }
 return (0);
-}
-
-int _putchar(char c)
-{
-return write(STDOUT_FILENO, &c, 1);
 }
