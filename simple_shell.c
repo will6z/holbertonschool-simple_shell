@@ -42,13 +42,12 @@ exit(EXIT_FAILURE);
 buffer[bytes_read - 1] = '\0';
 
 token = strtok(buffer, " ");
+i = 0;
 while (token != NULL)
 {
 args[i++] = token;
 token = strtok(NULL, " ");
 }
-args[0] = buffer;
-args[1] = NULL;
 args[i] = NULL;
 
 if (execve(args[0], args, NULL) == -1)
