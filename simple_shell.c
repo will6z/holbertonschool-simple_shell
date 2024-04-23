@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "shell.h"
 #include <string.h>
+#include <sys/wait.h>
 
 #define BUFFER_SIZE 1024
 /**
@@ -52,7 +53,7 @@ else if (pid == 0)
 {
 if (execve(args[0], args, NULL) == -1)
 {
-perror("execve");
+perror("./shell");
 exit(EXIT_FAILURE);
 }
 }
