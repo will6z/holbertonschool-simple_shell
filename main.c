@@ -1,12 +1,12 @@
 #include "shell.h"
 /**
- *remove_nl - for remove \n
- *@cmd: command to execute
+ *main - main function of the program
  *
- *Return: cmd
+ *
+ *Return: 0 on success
  *
 */
-int main()
+int main(void)
 {
 char *token, *command = NULL;
 int status = 0;
@@ -62,7 +62,7 @@ if (isatty(STDIN_FILENO))
 display_shell_prompt();
 }
 bytes_read = getline(&command, &buffer_size, stdin);
-if(bytes_read == -1)
+if (bytes_read == -1)
 {
 if (isatty(STDIN_FILENO))
 {

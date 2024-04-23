@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  *display_shell_prompt - displays the shell prompt.
  *
@@ -8,6 +9,7 @@ void display_shell_prompt(void)
 printf(">>>> ");
 fflush(stdout);
 }
+
 /**
  *remove_newline_character - removes the newline charatcer
  *@str: the string
@@ -21,6 +23,7 @@ if (newline != NULL)
 *newline = '\0';
 }
 }
+
 /**
  *execute_shell_command - execute the provided shell command
  *@command: the command to execute
