@@ -13,7 +13,7 @@
  *
  *Return: always 0
  */
-int main(void)
+int (void)
 {
 char buffer[BUFFER_SIZE];
 char *args[BUFFER_SIZE / 2 + 1];
