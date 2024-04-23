@@ -24,7 +24,7 @@ if (has_whitespace_check == 1 || command == NULL)
 free(command);
 }
 }
-token = strtok(command, '\n');
+token = strtok(command, "\n");
 
 if (token != NULL && command != NULL)
 {
