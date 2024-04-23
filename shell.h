@@ -18,4 +18,5 @@ int has_whitespace(char *command);
 int execute_shell_command(char *command);
 int main(void);
 int _putchar(char c);
+void print_message(char *message)
 #endif
