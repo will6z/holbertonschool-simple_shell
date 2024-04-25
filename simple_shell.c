@@ -38,6 +38,12 @@ exit(EXIT_FAILURE);
 buffer[bytes_read - 1] = '\0';
 
 token = strtok(buffer, " ");
+if (token != NULL && strcmp(token, "exit") == 0)
+{
+	printf("Exiting shell...\n");
+	break;
+}
+token = strtok(buffer, " ");
 while (token != NULL)
 {
 args[i++] = token;
