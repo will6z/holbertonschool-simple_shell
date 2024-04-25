@@ -1,65 +1,61 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
-#define PROMPT "#cisfun$ "
 #define BUFFER_SIZE 1024
-/**
- *main - main function
- *
- *
- *
- *Return: always 0
- */
+
+void read_command(char *buffer) 
+{
+	printf("shell> ");
+	fgets(buffer, BUFFER_SIZE, stdin);
+	buffer[strcspn(buffer, "\n")] = '\0';
+}
+
+void execute_command(char *command)
+{
+	char *args[BUFFER_SIZE];
+	char *token = strtok(command, " ");
+	int i = 0;
+	while (token != NULL)
+	{
+	args[i++] = token;
+	token = strtok(NULL, " ");
+	}
+	args[i] = NULL;
+
+	if (strcmp(args[0], "exit") == 0)
+	{
+		exit(0);
+	}
+
+	pid_t pid = fork();
+	if (pid < 0)
+	{
+	perror("fork");
+	}
+	else if (pid == 0)
+	{
+	if (execvp(args[0], args) == -1)
+	{
+	perror("execvp");
+	exit(EXIT_FAILURE);
+	}
+	}
+	else
+	{
+	wait(NULL);
+	}
+}
 int main(void)
 {
-char *token;
-int i = 0;
-char buffer[BUFFER_SIZE];
-char *args[BUFFER_SIZE / 2 + 1];
-ssize_t bytes_read;
+	char command[BUFFER_SIZE];
 
-while (1)
-{
-write(STDOUT_FILENO, PROMPT, sizeof(PROMPT) - 1);
-
-bytes_read = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-if (bytes_read == 0)
-{
-write(STDOUT_FILENO, "\n", 1);
-break;
-}
-else if (bytes_read == -1)
-{
-perror("read");
-exit(EXIT_FAILURE);
-}
-buffer[bytes_read - 1] = '\0';
-
-token = strtok(buffer, " ");
-if (token != NULL && strcmp(token, "exit") == 0)
-{
-	printf("Exiting shell...\n");
-	break;
-{
-i = 0;
-}
-token = strtok(buffer, " ");
-while (token != NULL)
-{
-args[i++] = token;
-token = strtok(NULL, " ");
-}
-args[0] = buffer;
-args[1] = NULL;
-args[i] = NULL;
-
-if (execve(args[0], args, NULL) == -1)
-{
-perror(args[0]);
-}
-}
-return (0);
-}
+	while (1)
+	{
+		read_command(command);
+		execute_command(command);
+	}
+	return (0);
 }
