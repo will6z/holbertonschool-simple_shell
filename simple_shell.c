@@ -6,13 +6,6 @@
 
 #define BUFFER_SIZE 1024
 
-void read_command(char *buffer) 
-{
-	printf("$ ");
-	fgets(buffer, BUFFER_SIZE, stdin);
-	buffer[strcspn(buffer, "\n")] = '\0';
-}
-
 void execute_command(char *command)
 {
 	char *args[BUFFER_SIZE];
@@ -62,10 +55,11 @@ int main(void)
 {
 	char command[BUFFER_SIZE];
 
-	while (1)
-	{
-		read_command(command);
-		execute_command(command);
-	}
+	fgets(command, BUFFER_SIZE, stdin);
+
+	command[strcspn(command, "\n")] = '\0';
+
+	execute_command(command);
+
 	return (0);
 }
