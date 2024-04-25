@@ -43,7 +43,8 @@ if (token != NULL && strcmp(token, "exit") == 0)
 	printf("Exiting shell...\n");
 	break;
 {
-{
+i = 0;
+}
 token = strtok(buffer, " ");
 while (token != NULL)
 {
