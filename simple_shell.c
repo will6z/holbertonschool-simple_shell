@@ -8,7 +8,7 @@
 
 void read_command(char *buffer) 
 {
-	printf("shell> ");
+	printf("$ ");
 	fgets(buffer, BUFFER_SIZE, stdin);
 	buffer[strcspn(buffer, "\n")] = '\0';
 }
@@ -28,6 +28,16 @@ void execute_command(char *command)
 	if (strcmp(args[0], "exit") == 0)
 	{
 		exit(0);
+	}
+	else if (strcmp(args[0], "env") == 0)
+	{
+		extern char **environ;
+		char **env = environ;
+		while (env)
+		{
+			printf("%s\n", env++);
+		}
+		return;
 	}
 
 	pid_t pid = fork();
