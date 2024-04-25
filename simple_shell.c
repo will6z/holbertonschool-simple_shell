@@ -42,11 +42,8 @@ if (token != NULL && strcmp(token, "exit") == 0)
 {
 	printf("Exiting shell...\n");
 	break;
-}
-else
 {
-	printf("Command: %s\n", buffer);
-}
+{
 token = strtok(buffer, " ");
 while (token != NULL)
 {
@@ -63,4 +60,5 @@ perror(args[0]);
 }
 }
 return (0);
+}
 }
