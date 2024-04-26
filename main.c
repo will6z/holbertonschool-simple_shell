@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,7 +31,7 @@ int main(void)
 		execute_command(args);
 	}
 	return (0);
-=======
+}
 #include "shell.h"
 /**
  *main - main function of the program
