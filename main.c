@@ -45,16 +45,16 @@ int main(void)
 {
 char *token, *command = NULL;
 int status = 0;
-int has_whitespace_check = 1;
+int whitespace_check = 1;
 
 while (1)
 {
-while (has_whitespace_check == 1)
+while (whitespace_check == 1)
 {
 command = get_user_input();
-has_whitespace_check = has_whitespace(command);
+whitespace_check = whitespace(command);
 
-if (has_whitespace_check == 1 || command == NULL)
+if (whitespace_check == 1 || command == NULL)
 {
 free(command);
 }
@@ -75,7 +75,7 @@ status = execute_shell_command(command);
 token = strtok(NULL, "\n");
 }
 free(command);
-has_whitespace_check = 1;
+whitespace_check = 1;
 }
 return (status);
 }
@@ -116,12 +116,12 @@ command[length - 1] = '\0';
 return (command);
 }
 /**
- *has_whitespace - checks for whitespaces
+ *whitespace - checks for whitespaces
  *@command: the command to use for checking
  *
  *Return: 1 if whitespace is present, 0 otherwise
 */
-int has_whitespace(char *command)
+int whitespace(char *command)
 {
 int index;
 

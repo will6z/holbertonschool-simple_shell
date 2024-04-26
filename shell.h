@@ -14,9 +14,10 @@
 
 void display_shell_prompt(void);
 char *get_user_input(void);
-int has_whitespace(char *command);
+int whitespace(char *command);
 int execute_shell_command(char *command);
 int main(void);
 int _putchar(char c);
 void print_message(char *message);
+
 #endif
