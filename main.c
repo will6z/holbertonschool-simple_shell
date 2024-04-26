@@ -4,7 +4,7 @@
 #include "path.h"
 #include "tokenize.h"
 #include "execute.h"
-#include <constants.h>
+#include "constants.h"
 
 #define MAX_CMD_LEN 100
 #define MAX_ARGS 10
@@ -47,16 +47,16 @@ int main(void)
 {
 char *token, *command = NULL;
 int status = 0;
-int whitespace_check = 1;
+int has_whitespace_check = 1;
 
 while (1)
 {
-while (whitespace_check == 1)
+while (has_whitespace_check == 1)
 {
 command = get_user_input();
-whitespace_check = whitespace(command);
+has_whitespace_check = has_whitespace(command);
 
-if (whitespace_check == 1 || command == NULL)
+if (has_whitespace_check == 1 || command == NULL)
 {
 free(command);
 }
@@ -77,7 +77,7 @@ status = execute_shell_command(command);
 token = strtok(NULL, "\n");
 }
 free(command);
-whitespace_check = 1;
+has_whitespace_check = 1;
 }
 return (status);
 }
@@ -118,12 +118,12 @@ command[length - 1] = '\0';
 return (command);
 }
 /**
- *whitespace - checks for whitespaces
+ *has_whitespace - checks for whitespaces
  *@command: the command to use for checking
  *
  *Return: 1 if whitespace is present, 0 otherwise
 */
-int whitespace(char *command)
+int has_whitespace(char *command)
 {
 int index;
 
